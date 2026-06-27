@@ -88,7 +88,7 @@ export function ChangePasswordScreen() {
           <Field label="Repite la nueva contraseña" icon="key" value="••••••••••••" valid />
         </Card>
         <div style={{ marginTop: 18 }}>
-          <Button kind="primary" size="lg" full icon="check" onClick={() => nav.login()}>Guardar y continuar</Button>
+          <Button kind="primary" size="lg" full icon="check" onClick={() => nav.pop()}>Guardar y continuar</Button>
         </div>
       </div>
     </Screen>

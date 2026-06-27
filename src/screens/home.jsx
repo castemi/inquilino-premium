@@ -39,7 +39,7 @@ export function HomeScreen({ role = 'admin' }) {
       title="Inicio"
       actions={<>
         <HeaderBtn icon="bell" badge={openCount} onClick={() => nav.setTab('incidencias')} />
-        <Avatar initials="ÓC" size={36} />
+        <span onClick={() => nav.push('admin-perfil')} style={{ cursor: 'pointer' }}><Avatar initials="ÓC" size={36} /></span>
       </>}
     />
   )
