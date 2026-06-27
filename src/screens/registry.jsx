@@ -11,6 +11,7 @@ import { IncidentsListScreen, IncidentDetailScreen } from './incidencias.jsx'
 import { StatsScreen } from './estadisticas.jsx'
 import { TenantsListScreen, TenantDetailScreen, NewTenantSheet } from './inquilinos.jsx'
 import { AdminMenuScreen, ZonesScreen, FlatDetailScreen, GestoresScreen, GestorCreatedSheet, QRScreen, AuditScreen, ProfileScreen } from './admin.jsx'
+import { PublicFormScreen, PublicSentScreen } from './publico.jsx'
 
 // Raíz de cada pestaña del tab bar
 export const TAB_ROOT = {
@@ -59,8 +60,8 @@ export const ROUTES = {
   'admin-qr': QRScreen,
   'admin-audit': AuditScreen,
   'admin-perfil': ProfileScreen,
-  // pendiente (se sustituye en el chunk 6):
-  publico: (p) => <Placeholder tab={null} title="Formulario público" {...p} />,
+  publico: PublicFormScreen,
+  'publico-enviado': PublicSentScreen,
 }
 
 // rutas que se muestran como hoja/modal sobre la pantalla anterior
