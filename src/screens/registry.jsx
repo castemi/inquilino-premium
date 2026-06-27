@@ -9,6 +9,7 @@ import { LoginScreen, ChangePasswordScreen } from './auth.jsx'
 import { HomeScreen } from './home.jsx'
 import { IncidentsListScreen, IncidentDetailScreen } from './incidencias.jsx'
 import { StatsScreen } from './estadisticas.jsx'
+import { TenantsListScreen, TenantDetailScreen, NewTenantSheet } from './inquilinos.jsx'
 
 // Raíz de cada pestaña del tab bar
 export const TAB_ROOT = {
@@ -46,11 +47,16 @@ export const ROUTES = {
   incidencias: IncidentsListScreen,
   'incidencia-detalle': IncidentDetailScreen,
   estadisticas: StatsScreen,
-  // pendientes (se sustituyen en chunks 4–5):
-  inquilinos: (p) => <Placeholder tab="inquilinos" title="Inquilinos" {...p} />,
+  inquilinos: TenantsListScreen,
+  'inquilino-detalle': TenantDetailScreen,
+  'inquilino-nuevo': NewTenantSheet,
+  // pendiente (se sustituye en el chunk 5):
   admin: (p) => <Placeholder tab="admin" title="Administración" {...p} />,
   publico: (p) => <Placeholder tab={null} title="Formulario público" {...p} />,
 }
+
+// rutas que se muestran como hoja/modal sobre la pantalla anterior
+export const SHEET_ROUTES = ['inquilino-nuevo', 'admin-gestor-nuevo']
 
 export function getScreen(routeKey) {
   return ROUTES[routeKey] || ROUTES.home

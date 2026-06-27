@@ -6,7 +6,7 @@ import { IP, DISPLAY } from './lib/tokens.js'
 import { Icon } from './lib/icon.jsx'
 import { IOSDevice } from './device/IOSDevice.jsx'
 import { NavContext } from './nav.jsx'
-import { getScreen, TAB_ROOT } from './screens/registry.jsx'
+import { getScreen, TAB_ROOT, SHEET_ROUTES } from './screens/registry.jsx'
 
 const TAB_KEYS = ['inicio', 'incidencias', 'inquilinos', 'estadisticas', 'admin']
 
@@ -74,14 +74,27 @@ export default function App() {
     }
   }, [activeTab, role, publicMode, publicStack.length])
 
-  // pantalla activa
-  let current
-  if (publicMode) current = publicStack[publicStack.length - 1]
-  else if (!authed) current = { key: 'login', props: {} }
-  else current = stacks[activeTab][stacks[activeTab].length - 1]
+  // pila visible según el modo
+  let viewStack
+  if (publicMode) viewStack = publicStack
+  else if (!authed) viewStack = [{ key: 'login', props: {} }]
+  else viewStack = stacks[activeTab]
 
-  const Comp = getScreen(current.key)
-  const screen = <Comp role={role} {...current.props} />
+  const top = viewStack[viewStack.length - 1]
+  const isSheet = SHEET_ROUTES.includes(top.key)
+  const below = isSheet && viewStack.length > 1 ? viewStack[viewStack.length - 2] : null
+
+  const renderRoute = (route) => {
+    const Comp = getScreen(route.key)
+    return <Comp role={role} {...route.props} />
+  }
+
+  const screen = (
+    <div style={{ position: 'relative', height: '100%' }}>
+      {below && <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>{renderRoute(below)}</div>}
+      <div style={{ position: 'absolute', inset: 0, zIndex: isSheet ? 30 : 1 }}>{renderRoute(top)}</div>
+    </div>
+  )
 
   const device = <IOSDevice bare={isMobile}>{screen}</IOSDevice>
 
