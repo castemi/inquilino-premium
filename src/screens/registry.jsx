@@ -7,6 +7,7 @@ import { Screen, Header, TabBar } from '../ui/index.jsx'
 // Pantallas reales ya portadas
 import { LoginScreen, ChangePasswordScreen } from './auth.jsx'
 import { HomeScreen } from './home.jsx'
+import { IncidentsListScreen, IncidentDetailScreen } from './incidencias.jsx'
 
 // Raíz de cada pestaña del tab bar
 export const TAB_ROOT = {
@@ -41,8 +42,9 @@ export const ROUTES = {
   login: LoginScreen,
   'change-password': ChangePasswordScreen,
   home: HomeScreen,
-  // pendientes (se sustituyen en chunks 2–6):
-  incidencias: (p) => <Placeholder tab="incidencias" title="Incidencias" {...p} />,
+  incidencias: IncidentsListScreen,
+  'incidencia-detalle': IncidentDetailScreen,
+  // pendientes (se sustituyen en chunks 4–6):
   inquilinos: (p) => <Placeholder tab="inquilinos" title="Inquilinos" {...p} />,
   estadisticas: (p) => <Placeholder tab="estadisticas" title="Estadísticas" {...p} />,
   admin: (p) => <Placeholder tab="admin" title="Administración" {...p} />,
