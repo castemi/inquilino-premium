@@ -37,6 +37,17 @@ npm run preview    # sirve el build de producción
 En el teléfono: abre la URL desplegada y usa **«Añadir a pantalla de inicio»**
 para instalarla como app (PWA, pantalla completa, con icono de marca).
 
+## Desplegar en Vercel
+
+Es un proyecto Vite estático; Vercel lo detecta automáticamente
+(build `npm run build`, salida `dist/`). Dos caminos:
+
+1. **Integración con GitHub (recomendado):** en [vercel.com/new](https://vercel.com/new)
+   importa el repo `castemi/inquilino-premium`, elige la rama, y Vercel publica
+   en cada push. Sin configuración extra.
+2. **CLI:** `npm i -g vercel && vercel` desde la raíz del proyecto y sigue el
+   asistente (la primera vez pide login).
+
 ## Stack y arquitectura
 
 - **Vite + React 18** (sin router externo).
